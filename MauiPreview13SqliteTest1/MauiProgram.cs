@@ -16,14 +16,16 @@ public static class MauiProgram
             });
 
         const string connectionString = @"Data Source=data.db;";
-
-        //builder.Services.AddDbContext<AppDbContext>(); // (options => options.UseSqlite(connectionString));
         builder.Services.AddDbContextFactory<AppDbContext>(options => options.UseSqlite(connectionString));
 
         var app = builder.Build();
 
         var dbContext = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
-        dbContext.Database.EnsureCreated();
+        if (!dbContext.Database.CanConnect())
+        {
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
+        }
 
         return app;
     }

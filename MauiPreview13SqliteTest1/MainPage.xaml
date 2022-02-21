@@ -1,15 +1,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiPreview13SqliteTest1"
+             xmlns:models="clr-namespace:MauiPreview13SqliteTest1.Models"
              x:Class="MauiPreview13SqliteTest1.MainPage"
+             x:Name="this"
+             BindingContext="{x:Reference this}"
              BackgroundColor="{DynamicResource SecondaryColor}">
     <StackLayout>
-        <Label 
-                Text="Hello, World!"
-                Grid.Row="0"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center"
-                x:Name="ResultsLabel"/>
+        <ListView x:Name="TodosListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Id}"></Label>
+                            <Label Text="{Binding Title}"></Label>
+                            <Label Text="{Binding IsCompleted}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button 
                 Text="Click me"
                 FontAttributes="Bold"

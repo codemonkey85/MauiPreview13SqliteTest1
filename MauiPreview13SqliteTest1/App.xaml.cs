@@ -4,9 +4,9 @@ namespace MauiPreview13SqliteTest1;
 
 public partial class App : Application
 {
-	public App(AppDbContext dbContext)
-	{
-		InitializeComponent();
-		MainPage = new MainPage(dbContext);
-	}
+    public App(AppDbContext dbContext)
+    {
+        InitializeComponent();
+        MainPage = new MainPage(dbContext);
+    }
 }
