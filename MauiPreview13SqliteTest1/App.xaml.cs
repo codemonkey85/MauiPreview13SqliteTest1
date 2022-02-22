@@ -1,12 +1,12 @@
-﻿using MauiPreview13SqliteTest1.Data;
+﻿using MauiPreview13SqliteTest1.Services;
 
 namespace MauiPreview13SqliteTest1;
 
 public partial class App : Application
 {
-    public App(AppDbContext dbContext)
+    public App(TodoService todoService)
     {
         InitializeComponent();
-        MainPage = new MainPage(dbContext);
+        MainPage = new MainPage(todoService);
     }
 }

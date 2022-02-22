@@ -1,4 +1,5 @@
 ﻿using MauiPreview13SqliteTest1.Data;
+using MauiPreview13SqliteTest1.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace MauiPreview13SqliteTest1;
@@ -17,6 +18,7 @@ public static class MauiProgram
 
         const string connectionString = @"Data Source=data.db;";
         builder.Services.AddDbContextFactory<AppDbContext>(options => options.UseSqlite(connectionString));
+        builder.Services.AddScoped<TodoService>();
 
         var app = builder.Build();
 

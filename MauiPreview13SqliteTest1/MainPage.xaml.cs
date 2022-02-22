@@ -1,26 +1,26 @@
 ﻿using System.Collections.ObjectModel;
-using MauiPreview13SqliteTest1.Data;
 using MauiPreview13SqliteTest1.Models;
+using MauiPreview13SqliteTest1.Services;
 
 namespace MauiPreview13SqliteTest1;
 
 public partial class MainPage : ContentPage
 {
-    private AppDbContext _dbContext;
+    private TodoService _todoService;
 
     public ObservableCollection<TodoItem> TodoItems { get; set; } = new();
 
-    public MainPage(AppDbContext dbContext)
+    public MainPage(TodoService todoService)
     {
         InitializeComponent();
-        _dbContext = dbContext;
+        _todoService = todoService;
     }
 
-    private void OnButtonClicked(object sender, EventArgs e)
+    private async void OnButtonClicked(object sender, EventArgs e)
     {
         if (!TodoItems.Any())
         {
-            foreach (var todo in _dbContext.TodoItems.ToArray())
+            foreach (var todo in await _todoService.GetAllTodoItemsAsync())
             {
                 TodoItems.Add(todo);
             }

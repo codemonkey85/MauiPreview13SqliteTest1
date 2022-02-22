@@ -11,11 +11,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Id}"></Label>
-                            <Label Text="{Binding Title}"></Label>
-                            <Label Text="{Binding IsCompleted}"></Label>
-                        </StackLayout>
+                        <HorizontalStackLayout Padding="5">
+                            <CheckBox IsChecked="{Binding IsCompleted}" />
+                            <Label Text="{Binding Title}" />
+                        </HorizontalStackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
